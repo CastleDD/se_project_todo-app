@@ -69,16 +69,21 @@ class FormValidator {
     }
 
     resetValidation() {
-        this._formElement.reset();
+        this._inputList.forEach((inputElement) => {
+            inputElement.value = "";
+            this._hideInputError(inputElement);
+        });
         this._toggleButtonState();
     }
+        
+      
 
     enableValidation() {
         this._formElement.addEventListener("submit", (evt) => {
           evt.preventDefault();
-          this._resetValidation();
         });
         this._setEventListeners();
+        this._toggleButtonState();
     }
 }
 
